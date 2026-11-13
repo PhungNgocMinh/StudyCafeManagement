@@ -5,10 +5,8 @@ using System.Windows.Forms;
 
 namespace StudyCafeManagement
 {
-    /// <summary>
     /// FrmPayment - Chốt giờ, tính tiền bàn + tiền món, giảm 10% khách "Thân thiết",
     /// thanh toán bằng 1 Database Transaction: lưu + khóa hóa đơn, trừ kho, cộng điểm, giải phóng bàn.
-    /// </summary>
     public partial class FrmPayment : Form
     {
         private class Bill
@@ -37,7 +35,6 @@ namespace StudyCafeManagement
 
         private bool IsTakeAway { get { return _maBan == null; } }
 
-        // ============================================================ LOAD
         private void FrmPayment_Load(object sender, EventArgs e)
         {
             try
@@ -110,7 +107,7 @@ namespace StudyCafeManagement
             }
         }
 
-        // ============================================================ KHÁCH HÀNG
+        // KHÁCH HÀNG (THÂN THIẾT 100 ĐIỂM)
         private void LoadCustomer()
         {
             _hangKhach = null;
@@ -160,7 +157,7 @@ namespace StudyCafeManagement
             Recalc(null, EventArgs.Empty);
         }
 
-        // ============================================================ TÍNH TIỀN
+        // TÍNH TIỀN
         private static Bill Calc(decimal hours, decimal rate, decimal tienMon, string hangKhach)
         {
             var b = new Bill { Hours = hours, Rate = rate, TienMon = tienMon };
@@ -189,7 +186,7 @@ namespace StudyCafeManagement
                 : "Điểm tích lũy sẽ cộng: +" + b.Diem + " điểm (10.000đ = 1 điểm)";
         }
 
-        // ============================================================ THANH TOÁN (TRANSACTION)
+        // THANH TOÁN
         private void btnPay_Click(object sender, EventArgs e)
         {
             if (_paying) return;
@@ -223,7 +220,7 @@ namespace StudyCafeManagement
                         if (hd.MaBan == null && lines.Count == 0)
                             throw new InvalidOperationException("Đơn mang đi phải có ít nhất 1 món.");
 
-                        // 2. Tính tiền (hạng khách đọc lại từ CSDL)
+                        // 2. Tính tiền
                         KhachHang kh = _maKH == null ? null : db.KhachHangs.Find(_maKH);
                         decimal rate = 0m;
                         if (hd.MaBan != null)

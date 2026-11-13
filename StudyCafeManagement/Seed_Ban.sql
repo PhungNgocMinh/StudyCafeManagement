@@ -1,10 +1,10 @@
-﻿/* Nạp 41 bàn của quán (tầng 1: 30 bàn, tầng 2: 11 bàn). Chạy lại nhiều lần vẫn an toàn.
-   MaBan theo quy ước T{tầng}-{loại}{số}: D = bàn đơn, P = bàn đôi, R = bàn tròn 3-8 người,
+﻿/* Nạp 41 bàn của quán (tầng 1: 30 bàn, tầng 2: 11 bàn)
+   MaBan theo quy ước T{tầng}-{loại}{số tiền/hr}: D = bàn đơn, P = bàn đôi, R = bàn tròn 3-8 người,
    C = bàn 10-20 người, L = bàn 50 người. FrmOrder dựa vào quy ước này để xếp bàn đúng tầng/khu. */
 USE QuanLyCaPheHocTap;
 GO
 MERGE BAN AS t
-USING (VALUES
+USING (VALUES                 
     (N'T1-D01', N'Bàn đơn 01', 7500),
     (N'T1-D02', N'Bàn đơn 02', 7500),
     (N'T1-D03', N'Bàn đơn 03', 7500),

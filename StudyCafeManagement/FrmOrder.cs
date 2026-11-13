@@ -7,9 +7,8 @@ using System.Windows.Forms;
 
 namespace StudyCafeManagement
 {
-    /// <summary>
     /// FrmOrder - Sơ đồ bàn động + gọi món (thuê bàn theo giờ / mua mang đi) + kiểm tra tồn kho theo công thức.
-    /// </summary>
+
     public partial class FrmOrder : Form
     {
         private class ProductItem
@@ -48,7 +47,6 @@ namespace StudyCafeManagement
             _maNV = maNV;
         }
 
-        // ============================================================ LOAD
         private void FrmOrder_Load(object sender, EventArgs e)
         {
             try
@@ -119,7 +117,7 @@ namespace StudyCafeManagement
 
         private void FilterChanged(object sender, EventArgs e) { ApplyProductFilter(); }
 
-        // ============================================================ SƠ ĐỒ BÀN ĐỘNG (FlowLayoutPanel + LINQ)
+        // SƠ ĐỒ BÀN ĐỘNG
         private void RefreshMap()
         {
             int selIdx = tabFloors.SelectedIndex;
@@ -251,7 +249,7 @@ namespace StudyCafeManagement
             }
         }
 
-        // ============================================================ CLICK VÀO BÀN
+        // FIX CLICK VÀO BÀN
         private void Tile_Click(object sender, EventArgs e)
         {
             if (_busy) return;
@@ -307,7 +305,7 @@ namespace StudyCafeManagement
             finally { _busy = false; }
         }
 
-        /// <summary>Mở bàn: đổi bàn sang "Đang phục vụ" + tạo hóa đơn "Đang order" trong 1 transaction. Trả về MaHD hoặc null nếu bàn vừa bị người khác mở.</summary>
+        //Mở bàn: đổi bàn sang "Đang phục vụ" + tạo hóa đơn "Đang order" trong 1 transaction. Trả về MaHD hoặc null nếu bàn vừa bị người khác mở. Tránh cả 2 đều mở 1 lúc
         private string OpenTable(CoffeeShopDbContext db, Ban ban)
         {
             using (var tx = db.Database.BeginTransaction())
@@ -342,7 +340,7 @@ namespace StudyCafeManagement
             }
         }
 
-        // ============================================================ MUA MANG ĐI
+        // MUA MANG ĐI
         private void btnTakeAway_Click(object sender, EventArgs e)
         {
             _takeAway = true;
@@ -384,7 +382,7 @@ namespace StudyCafeManagement
             SelectInvoice(id, null);
         }
 
-        // ============================================================ NẠP HÓA ĐƠN ĐANG CHỌN
+        // NẠP HÓA ĐƠN ĐANG CHỌN
         private void SelectInvoice(string maHD, string maBan)
         {
             _currentMaHD = maHD;
@@ -505,7 +503,7 @@ namespace StudyCafeManagement
             }
         }
 
-        // ============================================================ THÊM MÓN (kiểm tra tồn kho)
+        // THÊM MÓN AND CHECK TỒN KHO
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (_busy) return;
@@ -631,7 +629,7 @@ namespace StudyCafeManagement
             finally { _busy = false; }
         }
 
-        // ============================================================ XÓA MÓN
+        // XÓA MÓN
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (_busy || _currentMaHD == null) return;
@@ -678,7 +676,7 @@ namespace StudyCafeManagement
             finally { _busy = false; }
         }
 
-        // ============================================================ HỦY HÓA ĐƠN
+        // HỦY HÓA ĐƠN
         private void btnCancelInvoice_Click(object sender, EventArgs e)
         {
             if (_busy || _currentMaHD == null) return;
@@ -725,7 +723,7 @@ namespace StudyCafeManagement
             finally { _busy = false; }
         }
 
-        // ============================================================ KHÁCH HÀNG
+        // KHÁCH HÀNG
         private void txtSDT_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; btnFindKH_Click(sender, EventArgs.Empty); }
@@ -777,7 +775,7 @@ namespace StudyCafeManagement
             }
         }
 
-        // ============================================================ THANH TOÁN
+        // THANH TOÁN
         private void btnPay_Click(object sender, EventArgs e)
         {
             if (_busy || _currentMaHD == null) return;
@@ -806,7 +804,7 @@ namespace StudyCafeManagement
             finally { _busy = false; }
         }
 
-        // ============================================================ LÀM MỚI
+        // Refresher Orb (30s cooldown)
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             if (_busy) return;
@@ -831,7 +829,7 @@ namespace StudyCafeManagement
                 RefreshMap();
                 UpdateTotals();
             }
-            catch { /* bỏ qua lỗi tạm thời khi tự làm mới */ }
+            catch { }
         }
     }
 }
