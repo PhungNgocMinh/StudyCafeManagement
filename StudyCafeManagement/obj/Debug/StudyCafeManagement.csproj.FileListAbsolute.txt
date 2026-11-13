@@ -1,14 +1,14 @@
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\StudyCafeManagement.exe.config
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\StudyCafeManagement.exe
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\StudyCafeManagement.pdb
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\EntityFramework.dll
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\EntityFramework.SqlServer.dll
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\EntityFramework.xml
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\bin\Debug\EntityFramework.SqlServer.xml
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCafeManagement.csproj.AssemblyReference.cache
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCafeManagement.Properties.Resources.resources
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCafeManagement.csproj.GenerateResource.cache
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCafeManagement.csproj.CoreCompileInputs.cache
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCaf.83A5BD4A.Up2Date
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCafeManagement.exe
-C:\PhungNgocMinh\Học phần\HK3_2026-2027\LapTrinhTrenWindows\Endterm\StudyCafeManagement\StudyCafeManagement\obj\Debug\StudyCafeManagement.pdb
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\StudyCafeManagement.exe.config
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\StudyCafeManagement.exe
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\StudyCafeManagement.pdb
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\EntityFramework.dll
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\EntityFramework.SqlServer.dll
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\EntityFramework.xml
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\bin\Debug\EntityFramework.SqlServer.xml
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCafeManagement.csproj.AssemblyReference.cache
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCafeManagement.Properties.Resources.resources
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCafeManagement.csproj.GenerateResource.cache
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCafeManagement.csproj.CoreCompileInputs.cache
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCaf.83A5BD4A.Up2Date
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCafeManagement.exe
+D:\VSC\CK_LTWin\Test2\PhungNgocMinh-StudyCafeManagement-c991321\StudyCafeManagement\obj\Debug\StudyCafeManagement.pdb
