@@ -1,10 +1,17 @@
-﻿/* Nạp 41 bàn của quán (tầng 1: 30 bàn, tầng 2: 11 bàn)
-   MaBan theo quy ước T{tầng}-{loại}{số tiền/hr}: D = bàn đơn, P = bàn đôi, R = bàn tròn 3-8 người,
-   C = bàn 10-20 người, L = bàn 50 người. FrmOrder dựa vào quy ước này để xếp bàn đúng tầng/khu. */
+﻿
+   /*  MaBan theo quy ước T{tầng}-{loại}{số}: D = bàn đơn, P = bàn đôi, R = bàn tròn 3-8 người,
+       C = bàn 10-20 người, L = bàn 50 người. FrmOrder dựa vào quy ước này để xếp bàn đúng tầng/khu. */
 USE QuanLyCaPheHocTap;
 GO
+/*  xóa 4 bàn thử cũ (Bàn đơn 01, Bàn đơn 02, Bàn nhóm 01, Phòng họp kín 01).*/
+
+DELETE FROM BAN
+WHERE TenBan IN (N'Bàn đơn 01', N'Bàn đơn 02', N'Bàn nhóm 01', N'Phòng họp kín 01')
+  AND MaBan NOT LIKE N'T[0-9]-[DPRCL][0-9]%'
+  AND NOT EXISTS (SELECT 1 FROM HOADON h WHERE h.MaBan = BAN.MaBan);
+GO
 MERGE BAN AS t
-USING (VALUES                 
+USING (VALUES
     (N'T1-D01', N'Bàn đơn 01', 7500),
     (N'T1-D02', N'Bàn đơn 02', 7500),
     (N'T1-D03', N'Bàn đơn 03', 7500),
@@ -52,3 +59,5 @@ WHEN MATCHED THEN UPDATE SET t.TenBan = s.TenBan, t.DonGiaGio = s.DonGiaGio
 WHEN NOT MATCHED THEN INSERT (MaBan, TenBan, DonGiaGio, TrangThai) VALUES (s.MaBan, s.TenBan, s.DonGiaGio, N'Trống');
 GO
 SELECT COUNT(*) AS SoBan FROM BAN;
+-- Bàn thử cũ còn sót lại (nếu có) là do đã có hóa đơn tham chiếu nên được giữ lại:
+SELECT MaBan, TenBan FROM BAN WHERE MaBan NOT LIKE N'T[0-9]-[DPRCL][0-9]%';
