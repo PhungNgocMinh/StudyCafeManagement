@@ -310,11 +310,10 @@ namespace StudyCafeManagement
         {
             using (var tx = db.Database.BeginTransaction())
             {
-                // Chỉ đổi được khi bàn còn "Trống" -> chặn mở chồng hóa đơn.
-                int rows = db.Database.ExecuteSqlCommand(
-                    "UPDATE BAN SET TrangThai = {0} WHERE MaBan = {1} AND TrangThai = {2}",
-                    AppConst.BAN_DANG_PHUC_VU, ban.MaBan, AppConst.BAN_TRONG);
-                if (rows != 1)
+                // Khóa dòng bàn và kiểm tra còn "Trống" -> chặn 2 thu ngân mở chồng cùng 1 bàn.
+                string status = db.Database.SqlQuery<string>(
+                    "SELECT TrangThai FROM BAN WITH (UPDLOCK, HOLDLOCK) WHERE MaBan = {0}", ban.MaBan).FirstOrDefault();
+                if (!string.Equals(status, AppConst.BAN_TRONG, StringComparison.Ordinal))
                 {
                     tx.Rollback();
                     MessageBox.Show("Bàn này vừa được mở bởi thu ngân khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -333,8 +332,12 @@ namespace StudyCafeManagement
                     TongThanhToan = 0,
                     TrangThai = AppConst.HD_DANG_ORDER
                 };
+                // THỨ TỰ QUAN TRỌNG: trigger của CSDL chỉ cho INSERT hóa đơn khi bàn còn "Trống",
+                // nên phải tạo hóa đơn TRƯỚC rồi mới đổi bàn sang "Đang phục vụ".
                 db.HoaDons.Add(hd);
                 db.SaveChanges();
+                db.Database.ExecuteSqlCommand("UPDATE BAN SET TrangThai = {0} WHERE MaBan = {1}",
+                    AppConst.BAN_DANG_PHUC_VU, ban.MaBan);
                 tx.Commit();
                 return hd.MaHD;
             }

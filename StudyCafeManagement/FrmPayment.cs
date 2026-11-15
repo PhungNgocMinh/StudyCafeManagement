@@ -285,7 +285,8 @@ namespace StudyCafeManagement
                     }
                     catch
                     {
-                        tx.Rollback();
+                        // Nếu trigger đã tự ROLLBACK thì tx.Rollback() ném lỗi "connection" và che mất lỗi thật.
+                        try { tx.Rollback(); } catch { }
                         throw;
                     }
                 }
