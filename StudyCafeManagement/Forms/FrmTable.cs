@@ -14,6 +14,7 @@ namespace StudyCafeManagement.Forms
         public FrmTable()
         {
             InitializeComponent();
+            CafeTheme.Apply(this);
         }
 
         private void FrmTable_Load(object sender, EventArgs e)

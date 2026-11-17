@@ -16,6 +16,7 @@ namespace StudyCafeManagement.Forms
         public FrmProduct()
         {
             InitializeComponent();
+            CafeTheme.Apply(this);
         }
 
         private void FrmProduct_Load(object sender, EventArgs e)

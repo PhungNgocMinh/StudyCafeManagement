@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
+using StudyCafeManagement.Forms;
 
 namespace StudyCafeManagement
 {
@@ -16,7 +14,14 @@ namespace StudyCafeManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmOrder()); // TẠM: đổi thành FrmLogin/FrmMain khi ghép dự án
+
+            using (FrmLogin login = new FrmLogin())
+            {
+                if (login.ShowDialog() != DialogResult.OK)
+                    return;
+
+                Application.Run(new FrmMain(login.LoggedInUser, login.LoggedInRole, login.LoggedInEmployeeId));
+            }
         }
     }
 }

@@ -57,18 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoffeeShopDbContext.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FrmCategory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmCategory.Designer.cs">
       <DependentUpon>FrmCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmChangePassword.cs" />
+    <Compile Include="Forms\FrmChangePassword.Designer.cs" />
     <Compile Include="Forms\FrmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +76,28 @@
     </Compile>
     <Compile Include="Forms\FrmIngredient.Designer.cs">
       <DependentUpon>FrmIngredient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.cs" />
+    <Compile Include="Forms\FrmLogin.Designer.cs" />
+    <Compile Include="Forms\FrmMain.cs" />
+    <Compile Include="Forms\FrmMain.Designer.cs" />
+    <Compile Include="Forms\FrmOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmOrder.Designer.cs">
+      <DependentUpon>FrmOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPayment.Designer.cs">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmRevenueReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmBestSellerReport.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmProduct.cs">
       <SubType>Form</SubType>
@@ -93,26 +111,18 @@
     <Compile Include="Forms\FrmRecipe.Designer.cs">
       <DependentUpon>FrmRecipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmRole.cs" />
+    <Compile Include="Forms\FrmRole.Designer.cs" />
     <Compile Include="Forms\FrmTable.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmTable.Designer.cs">
       <DependentUpon>FrmTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmOrder.Designer.cs">
-      <DependentUpon>FrmOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmPayment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPayment.Designer.cs">
-      <DependentUpon>FrmPayment.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\CafeTheme.cs" />
+    <Compile Include="Forms\FrmUser.cs" />
+    <Compile Include="Forms\FrmUser.Designer.cs" />
     <Compile Include="Helpers\OrderHelper.cs" />
-    <Compile Include="Model.dbml" />
     <Compile Include="Models\Ban.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
     <Compile Include="Models\CongThuc.cs" />
@@ -125,6 +135,21 @@
     <Compile Include="Models\VaiTro.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmChangePassword.resx">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRole.resx">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

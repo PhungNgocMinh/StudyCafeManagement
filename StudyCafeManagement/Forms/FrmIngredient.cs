@@ -14,6 +14,7 @@ namespace StudyCafeManagement.Forms
         public FrmIngredient()
         {
             InitializeComponent();
+            CafeTheme.Apply(this);
         }
 
         private void FrmIngredient_Load(object sender, EventArgs e)

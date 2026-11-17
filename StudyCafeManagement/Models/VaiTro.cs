@@ -15,5 +15,8 @@ public class VaiTro
     [Column("TenNhom")]
     public string TenNhom { get; set; }
 
+    [StringLength(500)]
+    public string Description { get; set; }
+
     public virtual ICollection<NguoiDung> NguoiDungs { get; set; }
 }
