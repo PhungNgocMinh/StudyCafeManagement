@@ -24,7 +24,7 @@ namespace StudyCafeManagement.Forms
 
         #region Tải và Làm mới dữ liệu
 
-        private void LoadData(string keyword = "")
+        private void LoadData(string keyword = "", bool resetForm = true)
         {
             try
             {
@@ -50,7 +50,8 @@ namespace StudyCafeManagement.Forms
                 if (dgvIngredient.Columns["SoLuongTon"] != null) dgvIngredient.Columns["SoLuongTon"].HeaderText = "Số Lượng Tồn";
                 if (dgvIngredient.Columns["DonViTinh"] != null) dgvIngredient.Columns["DonViTinh"].HeaderText = "Đơn Vị Tính";
 
-                ResetForm();
+                if (resetForm)
+                    ResetForm();
             }
             catch (Exception ex)
             {
@@ -232,7 +233,7 @@ namespace StudyCafeManagement.Forms
         // Ô tìm kiếm realtime
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadData(txtSearch.Text.Trim());
+            LoadData(txtSearch.Text.Trim(), false);
         }
 
         #endregion

@@ -22,7 +22,7 @@ namespace StudyCafeManagement.Forms
             LoadData();
         }
 
-        private void LoadData(string keyword = "")
+        private void LoadData(string keyword = "", bool resetForm = true)
         {
             try
             {
@@ -39,7 +39,8 @@ namespace StudyCafeManagement.Forms
                 if (dgvCategory.Columns["MaDanhMuc"] != null) dgvCategory.Columns["MaDanhMuc"].HeaderText = "Mã Danh Mục";
                 if (dgvCategory.Columns["TenDanhMuc"] != null) dgvCategory.Columns["TenDanhMuc"].HeaderText = "Tên Danh Mục";
 
-                ResetForm();
+                if (resetForm)
+                    ResetForm();
             }
             catch (Exception ex)
             {
@@ -176,7 +177,7 @@ namespace StudyCafeManagement.Forms
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text.Trim());
+        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text.Trim(), false);
         private void btnReset_Click(object sender, EventArgs e) => ResetForm();
     }
 }

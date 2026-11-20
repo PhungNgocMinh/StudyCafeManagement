@@ -13,6 +13,38 @@ namespace StudyCafeManagement.Forms
         private readonly CoffeeShopDbContext db = new CoffeeShopDbContext();
         private string selectedId = null;
 
+        private static string GetImagesFolder()
+        {
+            DirectoryInfo directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+
+            while (directory != null)
+            {
+                string imagesFolder = Path.Combine(directory.FullName, "Images");
+                if (Directory.Exists(imagesFolder))
+                    return imagesFolder;
+
+                directory = directory.Parent;
+            }
+
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+        }
+
+        private static string ResolveImagePath(string imageValue)
+        {
+            if (string.IsNullOrWhiteSpace(imageValue))
+                return null;
+
+            if (Path.IsPathRooted(imageValue) && File.Exists(imageValue))
+                return imageValue;
+
+            string imagesFolderPath = Path.Combine(GetImagesFolder(), imageValue);
+            if (File.Exists(imagesFolderPath))
+                return imagesFolderPath;
+
+            string baseDirectoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, imageValue);
+            return File.Exists(baseDirectoryPath) ? baseDirectoryPath : null;
+        }
+
         public FrmProduct()
         {
             InitializeComponent();
@@ -41,7 +73,7 @@ namespace StudyCafeManagement.Forms
             cboStatus.SelectedIndex = 0;
         }
 
-        private void LoadData(string keyword = "")
+        private void LoadData(string keyword = "", bool resetForm = true)
         {
             try
             {
@@ -68,7 +100,8 @@ namespace StudyCafeManagement.Forms
                 if (dgvProduct.Columns["TrangThai"] != null) dgvProduct.Columns["TrangThai"].HeaderText = "Trạng Thái";
                 if (dgvProduct.Columns["HinhAnh"] != null) dgvProduct.Columns["HinhAnh"].HeaderText = "Hình Ảnh";
 
-                ResetForm();
+                if (resetForm)
+                    ResetForm();
             }
             catch (Exception ex)
             {
@@ -117,10 +150,14 @@ namespace StudyCafeManagement.Forms
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
+                string imagesFolder = GetImagesFolder();
+                if (Directory.Exists(imagesFolder))
+                    ofd.InitialDirectory = imagesFolder;
+
                 ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    txtImageUrl.Text = ofd.FileName;
+                    txtImageUrl.Text = Path.GetFileName(ofd.FileName);
                     picProduct.Image = Image.FromFile(ofd.FileName);
                 }
             }
@@ -235,16 +272,16 @@ namespace StudyCafeManagement.Forms
                 var catObj = db.DanhMucMons.FirstOrDefault(c => c.TenDanhMuc == categoryName);
                 if (catObj != null) cboCategory.SelectedValue = catObj.MaDanhMuc;
 
-                if (!string.IsNullOrEmpty(txtImageUrl.Text) && File.Exists(txtImageUrl.Text))
-                    picProduct.Image = Image.FromFile(txtImageUrl.Text);
-                else
-                    picProduct.Image = null;
+                string imagePath = ResolveImagePath(txtImageUrl.Text);
+                picProduct.Image = !string.IsNullOrEmpty(imagePath)
+                    ? Image.FromFile(imagePath)
+                    : null;
 
                 errorProvider1.Clear();
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text.Trim());
+        private void txtSearch_TextChanged(object sender, EventArgs e) => LoadData(txtSearch.Text.Trim(), false);
         private void btnReset_Click(object sender, EventArgs e) => ResetForm();
     }
 }

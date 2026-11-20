@@ -1,6 +1,6 @@
 using System;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -10,8 +10,6 @@ namespace StudyCafeManagement.Forms
     public partial class FrmChangePassword : Form
     {
         private string username;
-
-        private string connString = "Data Source=.;Initial Catalog=QuanLyCaPheHocTap;Integrated Security=True;TrustServerCertificate=True";
         
         public FrmChangePassword(string loggedInUser)
         {
@@ -67,32 +65,27 @@ namespace StudyCafeManagement.Forms
             string oldHash = ComputeSha256Hash(oldPass);
             string newHash = ComputeSha256Hash(newPass);
 
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                conn.Open();
-                string checkQuery = "SELECT COUNT(1) FROM Users WHERE Username = @Username AND PasswordHash = @PasswordHash";
-                using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
+                using (CoffeeShopDbContext db = new CoffeeShopDbContext())
                 {
-                    cmdCheck.Parameters.AddWithValue("@Username", username);
-                    cmdCheck.Parameters.AddWithValue("@PasswordHash", oldHash);
-
-                    if (Convert.ToInt32(cmdCheck.ExecuteScalar()) == 0)
+                    var user = db.NguoiDungs.FirstOrDefault(u =>
+                        u.TenDangNhap == username && u.MatKhau == oldHash);
+                    if (user == null)
                     {
                         MessageBox.Show("Mật khẩu cũ không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                }
 
-                string updateQuery = "UPDATE Users SET PasswordHash = @NewHash WHERE Username = @Username";
-                using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, conn))
-                {
-                    cmdUpdate.Parameters.AddWithValue("@NewHash", newHash);
-                    cmdUpdate.Parameters.AddWithValue("@Username", username);
-                    cmdUpdate.ExecuteNonQuery();
-
+                    user.MatKhau = newHash;
+                    db.SaveChanges();
                     MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi đổi mật khẩu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
